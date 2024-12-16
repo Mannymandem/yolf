@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const BACKEND_URL = "https://liger-legal-sensibly.ngrok-free.app"; // Adjust if needed
+  const BACKEND_URL = "https://meowmeow.ngrok.app"; // Updated URL; // Adjust if needed
 
   // Direction and selection
   let direction = "crypto_to_xmr"; 
@@ -449,5 +449,29 @@ document.addEventListener('DOMContentLoaded', () => {
       updateAmounts();
     })
     .catch(err => console.error("Error fetching cryptos:", err));
+
+    fetch(`${BACKEND_URL}/api/all_cryptos`)
+  .then(res => res.text())  // Read the response as text to debug
+  .then(text => {
+    console.log("Raw response text:", text);
+    return JSON.parse(text);  // Attempt to parse JSON
+  })
+  .then(cryptos => {
+    console.log("Parsed cryptos:", cryptos);
+  })
+  .catch(err => console.error("Error fetching cryptos:", err));
+
+  fetch(`${BACKEND_URL}/api/all_cryptos`)
+  .then(res => res.text()) // Capture the response as text
+  .then(data => {
+    console.log("Raw response:", data); // Log the raw response to the console
+    return JSON.parse(data);            // Try parsing it as JSON
+  })
+  .then(cryptos => {
+    console.log("Parsed cryptos:", cryptos); // Log parsed JSON if successful
+  })
+  .catch(err => console.error("Error fetching cryptos:", err));
+
+
 
 });
